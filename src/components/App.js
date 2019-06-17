@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
+import VideoList from './VideoList';
 
 class App extends React.Component {
 
@@ -18,14 +19,13 @@ class App extends React.Component {
         });
 
         this.setState({videos : response.data.items});
-        console.log(this.state.videos);
     }
 
     render() {
         return (
             <div className="ui container">
                 <SearchBar onTermSubmit={this.onTermSubmit}/>
-                I have {this.state.videos.length} videos
+                <VideoList videos={this.state.videos}/>
             </div>
         );
     }
