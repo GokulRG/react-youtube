@@ -1,10 +1,12 @@
 import React from 'react';
 
-const VideoItem = (props) => {
+//Destructuring props
+const VideoItem = ({video}) => {
 
     return (
         <div>
-            Video Item
+            <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title}/>
+            {video.snippet.title}
         </div>
     );
 };
