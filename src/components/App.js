@@ -1,12 +1,14 @@
 import React from 'react';
-import youtube from '../apis/youtube';
+import axios from 'axios';
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
 
+    state = {videos : []};
+
     onTermSubmit = async searchTerm => {
         //It's called q -- query because that's what youtube has defined it to be
-        youtube.get('https://www.googleapis.com/youtube/v3/search', {
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {
                 q: searchTerm,
                 part: 'snippet',
@@ -14,12 +16,16 @@ class App extends React.Component {
                 key: 'AIzaSyDNv5WJjj0HeQNyf06wu80xKwuv5TkpP5U'
             }
         });
+
+        this.setState({videos : response.data.items});
+        console.log(this.state.videos);
     }
 
     render() {
         return (
             <div className="ui container">
                 <SearchBar onTermSubmit={this.onTermSubmit}/>
+                I have {this.state.videos.length} videos
             </div>
         );
     }
