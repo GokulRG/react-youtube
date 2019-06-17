@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 class App extends React.Component {
 
-    state = {videos : []};
+    state = { videos: [], selectedVideo: null };
 
     onTermSubmit = async searchTerm => {
         //It's called q -- query because that's what youtube has defined it to be
@@ -18,14 +19,19 @@ class App extends React.Component {
             }
         });
 
-        this.setState({videos : response.data.items});
+        this.setState({ videos: response.data.items });
+    }
+
+    onVideoSelect = (video) => {
+        this.setState({ selectedVideo: video });
     }
 
     render() {
         return (
             <div className="ui container">
-                <SearchBar onTermSubmit={this.onTermSubmit}/>
-                <VideoList videos={this.state.videos}/>
+                <SearchBar onTermSubmit={this.onTermSubmit} />
+                <VideoDetail video={this.state.selectedVideo} />
+                <VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect} />
             </div>
         );
     }

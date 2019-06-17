@@ -2,10 +2,11 @@ import React from 'react';
 import "./VideoItem.css";
 
 //Destructuring props
-const VideoItem = ({ video }) => {
+const VideoItem = ({ video, onVideoSelect }) => {
 
     return (
-        <div className="video-item item">
+        //This is the arrow function syntax to call a method with arguments
+        <div className="video-item item" onClick={() => onVideoSelect(video)}>
             <img className="ui image" src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} />
             <div className="content">
                 <div className="header">
