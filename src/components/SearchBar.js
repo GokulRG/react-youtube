@@ -1,12 +1,11 @@
 import React from 'react';
-import './SearchBar.css';
 
 class SearchBar extends React.Component {
 
-    state = {searchTerm : ''};
+    state = { searchTerm: '' };
 
     onInputChange = event => {
-        this.setState({searchTerm : event.target.value});
+        this.setState({ searchTerm: event.target.value });
     }
 
     onFormSubmit = event => {
@@ -20,7 +19,7 @@ class SearchBar extends React.Component {
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Video Search</label>
-                        <input value={this.state.searchTerm} onChange={this.onInputChange} type='text'/>
+                        <input value={this.state.searchTerm} onChange={this.onInputChange} type='text' />
                     </div>
                 </form>
             </div>
